@@ -20,10 +20,10 @@
         Автор: {{ post.author.get_full_name }} 
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-center">
-        Всего постов автора:  <span > {{ user_posts_count }} </span>
+        Всего постов автора:  <span > {{ post.author.posts.count }} </span>
       </li>
       <li class="list-group-item">
-        <a href="{% url 'posts:profile' user.username %}">
+        <a href="{% url 'posts:profile' post.author.username %}">
           все посты пользователя
         </a>
       </li>
@@ -31,7 +31,7 @@
   </aside>
   <article class="col-12 col-md-9">
     <p>
-      {{ post.text }}
+      {{ post.text|linebreaksbr }}
     </p>
     {% if request.user == post.author %}
     <a class="btn btn-primary" href="{% url 'posts:post_edit' post.id %}">

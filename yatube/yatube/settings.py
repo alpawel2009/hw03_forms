@@ -7,6 +7,11 @@ SECRET_KEY = 'ith-*zj2r@94x*==q(zikvc&kwx2v62zxlch8(1k67l5q68eh^'
 
 DEBUG = True
 
+USE_TZ = True
+TIME_ZONE = 'UTC'
+
+POSTS_AMOUNT = 10
+
 ALLOWED_HOSTS = []
 
 LOGIN_URL = 'users:login'
