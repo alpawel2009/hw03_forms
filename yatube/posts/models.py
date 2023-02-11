@@ -6,9 +6,9 @@ User = get_user_model()
 
 
 class Group(models.Model):
-    title = models.CharField(max_length=200)
-    slug = models.SlugField(unique=True)
-    description = models.TextField()
+    title = models.CharField(max_length=200, verbose_name='Название группы')
+    slug = models.SlugField(unique=True, verbose_name='Адрес группы')
+    description = models.TextField(verbose_name='Описание группы')
 
     def __str__(self) -> str:
         return self.title
@@ -16,19 +16,23 @@ class Group(models.Model):
 
 class Post(models.Model):
     text = models.TextField(verbose_name='Текст поста')
-    pub_date = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата публикации',
+    )
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='posts'
+        related_name='posts',
+        verbose_name='Автор поста',
     )
     group = models.ForeignKey(
         Group,
-        verbose_name='Группа',
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
         related_name='posts',
+        verbose_name='Группа',
     )
 
     class Meta:
